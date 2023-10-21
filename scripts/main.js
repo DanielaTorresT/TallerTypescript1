@@ -1,27 +1,21 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const data_js_1 = require("./data.js");
-let serieTable = document.getElementById('series');
-// let componentAverage: HTMLElement = document.getElementById('average')!;
-// componentAverage.innerHTML = `Seasons average: ${averageSeasons()}`;
+import { series } from './data.js';
+var serieTable = document.getElementById('series');
+console.log(series);
+uploadRows();
+var componentAverage = document.getElementById('average');
+componentAverage.innerHTML = "Seasons average: ".concat(averageSeasons());
 function uploadRows() {
-    data_js_1.series.forEach((serie) => (createRow(serie)));
+    series.forEach(function (serie) { return (createRow(serie)); });
 }
 function createRow(serie) {
-    let row = document.createElement('tr');
-    row.innerHTML = `<td>${serie.id}</td>
-    <td>${serie.name}</td>
-    <td>${serie.channel}</td>
-    <td>${serie.seasons}</td>
-    <td>${serie.description}</td>
-    <td><a href="${serie.url}">Link</a></td>
-    <td><img src="${serie.img}" width="100px"></td>`;
+    var row = document.createElement('tr');
+    row.innerHTML = "<td>".concat(serie.id, "</td>\n    <td><a href=\"").concat(serie.url, "\" target=\"_blank\">").concat(serie.name, "</a></td>\n    <td>").concat(serie.channel, "</td>\n    <td>").concat(serie.seasons, "</td>");
     serieTable.appendChild(row);
 }
-// function averageSeasons():string{
-//     let sum = 0;
-//     series.forEach((serie)=> sum += serie.seasons);
-//     sum/= series.length;
-//     let average = Math.round(sum);
-//     return average.toString();
-// }
+function averageSeasons() {
+    var sum = 0;
+    series.forEach(function (serie) { return sum += serie.seasons; });
+    sum /= series.length;
+    var average = Math.round(sum);
+    return average.toString();
+}
